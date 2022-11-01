@@ -23,7 +23,7 @@ Serviço desenvolvido para praticar o desenvolvimento de aplicação utilizando 
 | :---------- | :--------- | :------------------------------------------ |
 | `id`      | `string` | **Obrigatório**. ID do produto |
 
-#### Adiciona um usuários
+#### Adiciona um usuário
 
 ```
   POST /api/usuarios
