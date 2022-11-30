@@ -1,4 +1,4 @@
-package com.dale.autenticacao.model.usuario;
+package com.dale.autenticacao.autModel.usuario;
 
 public class LoginRequest {
     private String email;

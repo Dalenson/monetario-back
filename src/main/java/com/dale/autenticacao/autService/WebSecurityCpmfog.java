@@ -1,4 +1,4 @@
-package com.dale.autenticacao.service;
+package com.dale.autenticacao.autService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -52,7 +52,8 @@ public class WebSecurityCpmfog extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/api/usuarios","/api/usuarios/login")
+                .antMatchers(HttpMethod.POST,"/api/usuarios/login", "/api/usuarios")
+
                 .permitAll()
                 .anyRequest()
                 .authenticated();

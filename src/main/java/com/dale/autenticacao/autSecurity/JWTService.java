@@ -1,6 +1,6 @@
-package com.dale.autenticacao.security;
+package com.dale.autenticacao.autSecurity;
 
-import com.dale.autenticacao.model.Usuario;
+import com.dale.autenticacao.autModel.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;

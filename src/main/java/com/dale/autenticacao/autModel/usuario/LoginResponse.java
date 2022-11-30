@@ -1,17 +1,17 @@
-package com.dale.autenticacao.model.usuario;
+package com.dale.autenticacao.autModel.usuario;
 
-import com.dale.autenticacao.model.Usuario;
+import com.dale.autenticacao.autModel.Usuario;
 
 public class LoginResponse {
     private String token;
-    private Usuario usuario;
+    private Long idusuario;
 
     public LoginResponse() {
     }
 
     public LoginResponse(String token, Usuario usuario) {
         this.token = token;
-        this.usuario = usuario;
+        this.idusuario = usuario.getId();
     }
 
     public String getToken() {
@@ -22,11 +22,11 @@ public class LoginResponse {
         this.token = token;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Long getIdusuario() {
+        return idusuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdusuario(Long idusuario) {
+        this.idusuario = idusuario;
     }
 }

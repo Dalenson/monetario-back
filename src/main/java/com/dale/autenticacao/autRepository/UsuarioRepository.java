@@ -1,6 +1,6 @@
-package com.dale.autenticacao.repository;
+package com.dale.autenticacao.autRepository;
 
-import com.dale.autenticacao.model.Usuario;
+import com.dale.autenticacao.autModel.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

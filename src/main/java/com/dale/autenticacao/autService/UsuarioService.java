@@ -1,9 +1,10 @@
-package com.dale.autenticacao.service;
+package com.dale.autenticacao.autService;
 
-import com.dale.autenticacao.model.Usuario;
-import com.dale.autenticacao.model.usuario.LoginResponse;
-import com.dale.autenticacao.repository.UsuarioRepository;
-import com.dale.autenticacao.security.JWTService;
+import com.dale.autenticacao.autModel.Usuario;
+import com.dale.autenticacao.autModel.usuario.LoginResponse;
+import com.dale.autenticacao.autRepository.UsuarioRepository;
+import com.dale.autenticacao.autSecurity.JWTService;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -41,13 +42,20 @@ public class UsuarioService {
         return usuarioRepository.findByEmail(email);
     }
 
-    public Usuario adicionar(Usuario usuario){
+    public LoginResponse adicionar(Usuario usuario){
         usuario.setId(null);
+        String pass = usuario.getPassword();
         if(obterEmail(usuario.getEmail()).isPresent()){
             throw new InputMismatchException("Email de usuario já existe!");
         }
         usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
-        return usuarioRepository.save(usuario);
+        usuarioRepository.save(usuario);
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(usuario.getEmail(), pass, Collections.emptyList()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String token = hederPrefix + jwtService.gerarToken(authentication);
+
+        return new LoginResponse(token, usuario);
     }
 
     public LoginResponse logar(String email, String senha){
@@ -57,5 +65,9 @@ public class UsuarioService {
         String token = hederPrefix + jwtService.gerarToken(authentication);
         Usuario usuario = usuarioRepository.findByEmail(email).get();
         return new LoginResponse(token, usuario);
+    }
+
+    public Claims validarToken(String token){
+        return (Claims) jwtService.parse(token);
     }
 }

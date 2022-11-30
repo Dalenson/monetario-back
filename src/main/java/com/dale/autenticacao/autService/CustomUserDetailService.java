@@ -1,6 +1,6 @@
-package com.dale.autenticacao.service;
+package com.dale.autenticacao.autService;
 
-import com.dale.autenticacao.model.Usuario;
+import com.dale.autenticacao.autModel.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
