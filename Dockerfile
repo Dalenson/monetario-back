@@ -2,6 +2,8 @@
 FROM openjdk:17
 # define o mantenedor da imagem
 LABEL maintainer="Dale"
-ADD target/autenticacao-0.0.1-SNAPSHOT.jar autenticacao.jar
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+RUN bash -c "touch /app.jar"
 ENTRYPOINT ["java","-jar","autenticacao.jar"]
 
